@@ -8,8 +8,8 @@ export const Navbar = () => {
     <AppBar>
         <Toolbar>
             <NextLink href='/' passHref legacyBehavior>
-                <Link>
-                    <Typography variant='h6'>Testo</Typography>
+                <Link display='flex' alignItems='center'>
+                    <Typography variant='h6'>Testo |</Typography>
                     <Typography sx={{marginLeft:0.5}}>Shop</Typography>
                 </Link>
             </NextLink>
