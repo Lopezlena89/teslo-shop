@@ -1,8 +1,8 @@
-import NextLink  from 'next/link';
-import { initialData } from "@/database/products"
-import { Box, Button, CardActionArea, CardMedia, Grid, Link, Typography } from "@mui/material"
-import { ItemCounter } from '../ui';
 import { FC } from 'react';
+import NextLink  from 'next/link';
+import { Box, Button, CardActionArea, CardMedia, Grid, Link, Typography } from "@mui/material"
+import { initialData } from "@/database/products"
+import { ItemCounter } from '../ui';
 
 
 const productsInCart = [
@@ -15,7 +15,7 @@ interface Props{
     editable?:boolean
 }
 
-export const CardList:FC<Props> = ({editable = false}) => {
+export const CartList: FC<Props> = ({editable = false}) => {
     
 
     
@@ -30,9 +30,9 @@ export const CardList:FC<Props> = ({editable = false}) => {
                                 <Link>
                                     <CardActionArea>
                                         <CardMedia
-                                            image={`products/${product.images[0]}`}
+                                            image={ `/products/${product.images[0]}` }
                                             component='img'
-                                            sx={{borderRadius:'5px'}}
+                                            sx={{ borderRadius: '5px' }}
                                         />
                                     </CardActionArea>
                                 </Link>
@@ -43,13 +43,12 @@ export const CardList:FC<Props> = ({editable = false}) => {
                                 <Typography variant='body1'>{ product.title}</Typography>
                                 <Typography variant='body1'>Talla:<strong>M</strong></Typography>
 
-                                {/* Condicional  */}
                                 {
                                     editable 
                                     ? <ItemCounter/>
                                     : <Typography variant='h5'>3 items</Typography>
                                 }
-                                <ItemCounter/>
+                                
                             </Box>
                         </Grid>
                         <Grid item xs={2} display='flex' alignItems='center' flexDirection='column'>

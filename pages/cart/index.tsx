@@ -1,5 +1,5 @@
 import { Box, Button, Card, CardContent, Divider, Grid, Typography } from "@mui/material";
-import { CardList,OrderSummary } from "@/components/cart";
+import { CartList, OrderSummary } from '../../components/cart';
 import { ShopLayout } from "@/components/layouts";
 
 
@@ -14,7 +14,7 @@ const CardPage = () => {
 
         <Grid container>
             <Grid item xs={12} sm={7}>
-                <CardList />
+                <CartList editable/>
             </Grid>
             <Grid item xs={12} sm={5}>
                 <Card className="summary-card">

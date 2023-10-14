@@ -1,15 +1,32 @@
 import NextLink from 'next/link'
-import { Box, Button, Card, CardContent, Divider, Grid, Link, Typography } from "@mui/material";
+import { Box, Card, CardContent, Chip, Divider, Grid, Link, Typography } from "@mui/material";
 import { CartList,OrderSummary } from "@/components/cart";
 import { ShopLayout } from "@/components/layouts";
+import { CreditCardOffOutlined, CreditScoreOutlined } from '@mui/icons-material';
 
 
 
-const SummaryPage = () => {
+const OrderPage = () => {
 
   return (
-    <ShopLayout title='Resumen de orden' pageDescription={"Resumen de la orden"}>
-        <Typography variant='h1' component='h1'>Resumen de la orden</Typography>
+    <ShopLayout title='Resumen de orden 12946324582' pageDescription={"Resumen de la orden"}>
+        <Typography variant='h1' component='h1'>Orden: ABC123</Typography>
+
+        {/* <Chip
+            sx={{my:2}}
+            label='Pendiente de pago'
+            variant='outlined'
+            color='error'
+            icon={<CreditCardOffOutlined/>}
+        /> */}
+        <Chip
+            sx={{my:2}}
+            label='Orden ya fue pagada'
+            variant='outlined'
+            color='success'
+            icon={<CreditScoreOutlined/>}
+        />
+
 
         <Grid container>
             <Grid item xs={12} sm={7}>
@@ -51,9 +68,16 @@ const SummaryPage = () => {
                         <OrderSummary/>
 
                         <Box sx={{mt:3}}>
-                            <Button color='secondary' className='ciruclar-btn' fullWidth>
-                                Confirmar Orden
-                            </Button>
+                            {/* TODO: */}
+                            <h1>Pagar</h1>
+                            <Chip
+                                sx={{my:2}}
+                                label='Orden ya fue pagada'
+                                variant='outlined'
+                                color='success'
+                                icon={<CreditScoreOutlined/>}
+                            />
+            
                         </Box>
 
 
@@ -66,4 +90,4 @@ const SummaryPage = () => {
   )
 }
 
-export default SummaryPage;
+export default OrderPage;
