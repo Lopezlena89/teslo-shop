@@ -7,15 +7,15 @@ import { FullScreenLoading } from '@/components/ui';
 
 
 
-const HomePage:NextPage = () =>{
+const MenPage:NextPage = () =>{
 
  
-  const {products,isLoading} = useProducts('/products');
+  const {products,isLoading} = useProducts('/products?gender=men');
 
   return (
-    <ShopLayout title={'Teslo-Shop - Home'} pageDescription={'Encuentra los mejores productos de Teslo aqui'}>
-        <Typography variant='h1' component='h1'>Tienda</Typography>
-        <Typography variant='h2' sx={{mb:1}}>Todos los productos</Typography>
+    <ShopLayout title={'Teslo-Shop - Mens'} pageDescription={'Encuentra los mejores productos de Teslo para Hombres'}>
+        <Typography variant='h1' component='h1'>Hombres</Typography>
+        <Typography variant='h2' sx={{mb:1}}>Productos para Hombres</Typography>
 
         {
           isLoading
@@ -27,4 +27,4 @@ const HomePage:NextPage = () =>{
   )
 }
 
-export default HomePage;
+export default MenPage;
