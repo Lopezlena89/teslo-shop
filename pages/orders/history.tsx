@@ -1,7 +1,7 @@
 import NextLink from 'next/link'
 import { ShopLayout } from "@/components/layouts";
 import { Chip, Grid, Link, Typography } from "@mui/material";
-import { DataGrid, GridColDef, GridValueGetterParams } from "@mui/x-data-grid";
+import { DataGrid, GridColDef, GridRenderCellParams } from "@mui/x-data-grid";
 
 const columns:GridColDef[] = [
     {field:'id', headerName:'ID', width:100},
@@ -12,7 +12,7 @@ const columns:GridColDef[] = [
         headerName:'Pagada',
         description:'Muestra informacion si esta pagada la orden o no',
         width:200,
-        renderCell: ( params:GridValueGetterParams) => {
+        renderCell: ( params: GridRenderCellParams) => {
             return (
                 params.row.paid
                     ? <Chip color='success' label='Pagada' variant='outlined'/>
@@ -25,7 +25,7 @@ const columns:GridColDef[] = [
         headerName:'Ver orden',
         width:200,
         sortable:false,
-        renderCell: ( params:GridValueGetterParams) => {
+        renderCell: ( params: GridRenderCellParams) => {
             return (
                 <NextLink href={`/orders/${params.row.id}` } passHref legacyBehavior>
                     <Link underline='always'>
@@ -60,8 +60,7 @@ const HistoryPage = () => {
                 <DataGrid 
                     rows={rows}
                     columns={columns}
-                    pageSize={10}
-                    rowsPerPageOptions={ [10] }
+                    
                 />
             </Grid>
         </Grid>
