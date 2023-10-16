@@ -1,6 +1,6 @@
 import { Box, Divider, Drawer, IconButton, Input, InputAdornment, List, ListItem, ListItemIcon, ListItemText, ListSubheader } from "@mui/material"
 import { AccountCircleOutlined, AdminPanelSettings, CategoryOutlined, ConfirmationNumberOutlined, EscalatorWarningOutlined, FemaleOutlined, LoginOutlined, MaleOutlined, SearchOutlined, VpnKeyOutlined } from "@mui/icons-material"
-import { useContext } from "react"
+import { useContext, useState } from "react"
 import { UiContext } from "@/context"
 import { useRouter } from "next/router"
 
@@ -8,7 +8,17 @@ import { useRouter } from "next/router"
 export const SideMenu = () => {
     const router = useRouter();
    
-    const {isMenuOpen,toggleSideMenu} = useContext(UiContext)
+    const {isMenuOpen,toggleSideMenu} = useContext(UiContext);
+
+    const [searchTerm, setSearchTerm] = useState('');
+    
+
+    const onSearchTerm = (e:any) =>{
+        e.preventDefault();
+        if(searchTerm.trim().length === 0)return;
+        navigateTo(`/search/${searchTerm}`)
+
+    }
 
     const navigateTo = (url:string) =>{
         toggleSideMenu()
@@ -27,19 +37,24 @@ export const SideMenu = () => {
             <List>
 
                 <ListItem>
-                    <Input
-                        type='text'
-                        placeholder="Buscar..."
-                        endAdornment={
-                            <InputAdornment position="end">
-                                <IconButton
-                                aria-label="toggle password visibility"
-                                >
-                                 <SearchOutlined />
-                                </IconButton>
-                            </InputAdornment>
-                        }
-                    />
+                    <form onSubmit={onSearchTerm}>
+                        <Input
+                            autoFocus
+                            value={searchTerm}
+                            onChange={(e) =>setSearchTerm(e.target.value)}
+                            type='text'
+                            placeholder="Buscar..."
+                            endAdornment={
+                                <InputAdornment position="end">
+                                    <IconButton
+                                        onClick={onSearchTerm}
+                                    >
+                                    <SearchOutlined />
+                                    </IconButton>
+                                </InputAdornment>
+                            }
+                        />
+                    </form>
                 </ListItem>
 
                 <ListItem button>
