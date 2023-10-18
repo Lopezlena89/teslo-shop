@@ -39,11 +39,11 @@ const loginUser = async(req: NextApiRequest, res: NextApiResponse<Data>) => {
     const user = await User.findOne({email}).lean();
     await db.disconnect();
     if(!user){
-        return res.status(400).json({message:'Correo p password no validos - EMAIL'})
+        return res.status(400).json({message:'Correo o password no validos - EMAIL'})
     }
     
     if( !bcrypt.compareSync(password,user.password!) ){
-        return res.status(400).json({message:'Correo p password no validos - Password'})
+        return res.status(400).json({message:'Correo o password no validos - Password'})
     }
     const {role,name,_id} = user;
     const token = jwt.signToken(_id,email);
