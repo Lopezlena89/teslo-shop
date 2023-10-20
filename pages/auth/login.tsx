@@ -20,7 +20,7 @@ type FormData = {
 const LoginPage = () => {
 
     const router = useRouter();
-    console.log({router})
+    
     const {loginUser} = useContext(AuthContext)
 
     const { register, handleSubmit, formState: { errors }} = useForm<FormData>();

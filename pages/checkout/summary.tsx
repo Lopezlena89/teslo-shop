@@ -2,10 +2,20 @@ import NextLink from 'next/link'
 import { Box, Button, Card, CardContent, Divider, Grid, Link, Typography } from "@mui/material";
 import { CartList,OrderSummary } from "@/components/cart";
 import { ShopLayout } from "@/components/layouts";
+import { useContext } from 'react';
+import { CartContext } from '@/context';
+import { countries } from '@/utils';
 
 
 
 const SummaryPage = () => {
+
+    const {shippingAddress,numberOfItems} = useContext(CartContext);
+
+    if(!shippingAddress){
+        return <></>;
+    }
+    const {firstName,lastName,address,address2 = '',city,country,phone,zip} = shippingAddress;
 
   return (
     <ShopLayout title='Resumen de orden' pageDescription={"Resumen de la orden"}>
@@ -18,7 +28,7 @@ const SummaryPage = () => {
             <Grid item xs={12} sm={5}>
                 <Card className="summary-card">
                     <CardContent>
-                        <Typography variant='h2'>Resumen (3 productos)</Typography>
+                        <Typography variant='h2'>Resumen ({numberOfItems} {numberOfItems === 1 ? 'producto' : 'productos'})</Typography>
                         <Divider sx={{my:1}}/>
 
                         <Box display='flex' justifyContent='space-between'>
@@ -31,11 +41,11 @@ const SummaryPage = () => {
                         </Box>
 
                         
-                        <Typography>Luis Mariano</Typography>
-                        <Typography>322 Algun lugar</Typography>
-                        <Typography>Steet feald</Typography>
-                        <Typography>Canada</Typography>
-                        <Typography>+1 23212113</Typography>
+                        <Typography>{firstName} {lastName}</Typography>
+                        <Typography>{address}{address2 ? `, ${address2}` : ''}</Typography>
+                        <Typography>{city}, {zip}</Typography>
+                        <Typography>{countries.find(c => c.code === country)?.name}</Typography>
+                        <Typography>{phone}</Typography>
 
                         <Divider sx={{my:1}}/>
                         
